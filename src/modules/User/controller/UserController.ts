@@ -56,11 +56,12 @@ export default class UserController {
     };
   }
 
-  listAll() {
+  userExtract() {
     return async (req: Request, res: Response) => {
       try {
-        const userList = await this.useCase.listAll();
-        return res.json(userList);
+        const { id } = req.params;
+        const userExtract = await this.useCase.extract(id);
+        return res.json(userExtract);
       } catch (error) {
         console.log(error);
         return res.status(500);
@@ -68,18 +69,18 @@ export default class UserController {
     };
   }
 
-  list() {
+  userBalance() {
     return async (req: Request, res: Response) => {
       try {
         const { id } = req.params;
 
-        const listUser = await this.useCase.listUser(id);
+        const userBalance = await this.useCase.balance(id);
 
-        if (!listUser) {
+        if (!userBalance) {
           return res.status(404).json({ message: "Usuario não encontrado" });
         }
 
-        return res.json(listUser);
+        return res.json(userBalance);
       } catch (error) {
         console.log(error);
         return res.status(400);

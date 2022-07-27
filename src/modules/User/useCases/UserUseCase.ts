@@ -38,18 +38,22 @@ export default class UserUseCase {
     return updateUser;
   }
 
-  async listAll() {
-    const userList = await this.repository.findAll();
-    return userList;
-  }
-
-  listUser(_id: any) {
+  async extract(_id: any) {
     const isValidId = ObjectId.isValid(_id);
     if (!isValidId) {
       return null;
     }
-    const listUser = this.repository.findById(_id);
-    return listUser;
+    const extract = await this.repository.find();
+    return extract;
+  }
+
+  balance(_id: any) {
+    const isValidId = ObjectId.isValid(_id);
+    if (!isValidId) {
+      return null;
+    }
+    const balance = this.repository.findById(_id);
+    return balance;
   }
 
   async delete(id: any) {

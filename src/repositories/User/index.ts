@@ -10,7 +10,10 @@ export default class UserRepository implements IRepository {
   async create(payload: { name: string; email: string; password: string }) {
     return await this.userModel.create(payload);
   }
-  async find(payload?: any, id?: any) {}
+  async find(payload?: any, id?: any) {
+    const list = await this.userModel.find({ _id: id }, ["-password", "-__v"]);
+    return list;
+  }
   async update(
     id: any,
     payload: {
@@ -20,10 +23,7 @@ export default class UserRepository implements IRepository {
   ) {
     return await this.userModel.updateOne({ _id: id }, payload);
   }
-  async findAll() {
-    const list = await this.userModel.find({}, ["-password", "-__v"]);
-    return list;
-  }
+  async findAll(id: any) {}
   async findById(id: any) {
     return this.userModel.findById(id, ["-password", "-__v"]);
   }
