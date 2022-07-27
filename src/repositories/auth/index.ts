@@ -9,7 +9,7 @@ export default class AuthRepository implements IRepository {
     this.login = loginModel;
   }
   async find(payload?: { email: string; password: string }) {
-    return this.login.find({ email: payload?.email });
+    return await this.login.find({ email: payload?.email });
   }
   async findById(payload?: any, id?: any) {}
   async create(payload: any) {}

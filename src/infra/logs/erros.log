@@ -1,1 +1,1 @@
-{"level":"error","message":"[gerarTokenDeSenha] user not found","timestamp":"2022-06-29T22:36:07.043Z"}
+{"level":"error","message":"[generatePasswordToken] user not found","timestamp":"2022-06-29T22:36:07.043Z"}
