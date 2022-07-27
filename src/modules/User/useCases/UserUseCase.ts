@@ -8,7 +8,7 @@ type PayloadUserCreate = {
   password: string;
 };
 type PayloadUserUpdate = {
-  extract: {};
+  extract: { accountNumber: string; credit: string; debit: string };
   balance: string;
 };
 

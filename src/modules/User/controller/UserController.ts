@@ -8,7 +8,7 @@ type BodyUserCreate = {
   password: string;
 };
 type BodyUserUpdate = {
-  extract: {};
+  extract: { accountNumber: string; credit: string; debit: string };
   balance: string;
 };
 

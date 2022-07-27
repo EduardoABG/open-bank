@@ -17,7 +17,7 @@ export default class UserRepository implements IRepository {
   async update(
     id: any,
     payload: {
-      extract: {};
+      extract: { accountNumber: string; credit: string; debit: string };
       balance: string;
     }
   ) {

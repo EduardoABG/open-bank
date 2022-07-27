@@ -4,7 +4,11 @@ export interface IUser {
   name: string;
   email: string;
   password: string;
-  extract: {};
+  extract: {
+    accountNumber: string;
+    credit: string;
+    debit: string;
+  };
   balance: string;
 }
 
@@ -21,7 +25,9 @@ const userSchema = new Schema<IUser>(
       type: Schema.Types.String,
     },
     extract: {
-      type: Schema.Types.String,
+      accountNumber: { type: Schema.Types.String },
+      credit: { type: Schema.Types.String },
+      debit: { type: Schema.Types.String },
     },
     balance: {
       type: Schema.Types.String,
