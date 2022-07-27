@@ -8,8 +8,8 @@ type BodyUserCreate = {
   password: string;
 };
 type BodyUserUpdate = {
-  extract: { accountNumber: string; credit: string; debit: string };
-  balance: string;
+  extract: { accountNumber: string; credit: number; debit: number };
+  balance: number;
 };
 
 export default class UserController {
