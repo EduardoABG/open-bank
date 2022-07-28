@@ -10,22 +10,47 @@ export default class UserRepository implements IRepository {
   async create(payload: { name: string; email: string; password: string }) {
     return await this.userModel.create(payload);
   }
-  async find(payload?: any, id?: any) {
-    const list = await this.userModel.find({ _id: id }, ["-password", "-__v"]);
+  async find(id?: any) {
+    console.log(id);
+    const list = await this.userModel.findById(id, [
+      "-password",
+      "-email",
+      "-__v",
+      "-_id",
+      "-name",
+      "-createdAt",
+      "-updatedAt",
+      "-extract",
+    ]);
     return list;
   }
   async update(
     id: any,
     payload: {
-      extract: { accountNumber: string; credit: number; debit: number };
       balance: number;
+      extract: {
+        accountNumber: string;
+        credit: number;
+        debit: number;
+      };
     }
   ) {
-    return await this.userModel.updateOne({ _id: id }, payload);
+    return await this.userModel.findOneAndUpdate({ _id: id }, payload, {
+      new: true,
+    });
   }
   async findAll(id: any) {}
   async findById(id: any) {
-    return this.userModel.findById(id, ["-password", "-__v"]);
+    return this.userModel.findById(id, [
+      "-password",
+      "-email",
+      "-__v",
+      "-_id",
+      "-name",
+      "-createdAt",
+      "-updatedAt",
+      "-balance",
+    ]);
   }
   async delete(id: any) {
     return await this.userModel.deleteOne({ _id: id });

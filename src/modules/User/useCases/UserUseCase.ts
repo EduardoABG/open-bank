@@ -8,10 +8,13 @@ type PayloadUserCreate = {
   password: string;
 };
 type PayloadUserUpdate = {
-  extract: { accountNumber: string; credit: number; debit: number };
   balance: number;
+  extract: {
+    accountNumber: string;
+    credit: number;
+    debit: number;
+  };
 };
-
 export default class UserUseCase {
   private repository: IRepository;
 
@@ -19,7 +22,7 @@ export default class UserUseCase {
     this.repository = userRepository;
   }
 
-  async createUser(payload: PayloadUserCreate) {
+  async registerUser(payload: PayloadUserCreate) {
     const hashedPassword = bcrypt.hashSync(payload.password, 10);
     const userData = {
       name: payload.name,
@@ -32,22 +35,21 @@ export default class UserUseCase {
   updateUser(_id: any, payload: PayloadUserUpdate) {
     const userData = {
       extract: payload.extract,
-      balance: payload.balance,
     };
     const updateUser = this.repository.update(_id, userData);
     return updateUser;
   }
 
-  async extract(_id: any) {
+  async balance(_id: any) {
     const isValidId = ObjectId.isValid(_id);
     if (!isValidId) {
       return null;
     }
-    const extract = await this.repository.find();
+    const extract = await this.repository.find(_id);
     return extract;
   }
 
-  balance(_id: any) {
+  extract(_id: any) {
     const isValidId = ObjectId.isValid(_id);
     if (!isValidId) {
       return null;

@@ -22,7 +22,7 @@ export default class AuthController {
         if (!login) {
           return res.status(400).json("Email not registred!");
         }
-        if (!bcrypt.compareSync(req.body.password, login.password)) {
+        if (!bcrypt.compare(req.body.password, login.password)) {
           return res.status(401).json("Invalid password!");
         }
         const token = jwt.sign(
@@ -30,7 +30,6 @@ export default class AuthController {
             id: login.id,
             email: login.email,
             nome: login.name,
-            nivel: login.nivel,
           },
           "OPENBANK"
         );
