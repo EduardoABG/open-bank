@@ -6,6 +6,12 @@ type PayloadUserCreate = {
   name: string;
   email: string;
   password: string;
+  balance: number;
+  extract: {
+    accountNumber: string;
+    credit: number;
+    debit: number;
+  };
 };
 type PayloadUserUpdate = {
   balance: number;
@@ -28,12 +34,15 @@ export default class UserUseCase {
       name: payload.name,
       email: payload.email,
       password: hashedPassword,
+      balance: 0,
+      extract: payload.extract,
     };
     const newUser = await this.repository.create(userData);
     return newUser;
   }
   updateUser(_id: any, payload: PayloadUserUpdate) {
     const userData = {
+      balance: payload.balance,
       extract: payload.extract,
     };
     const updateUser = this.repository.update(_id, userData);

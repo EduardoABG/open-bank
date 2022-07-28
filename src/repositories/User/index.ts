@@ -7,11 +7,20 @@ export default class UserRepository implements IRepository {
   constructor(userModel: Model<IUser>) {
     this.userModel = userModel;
   }
-  async create(payload: { name: string; email: string; password: string }) {
+  async create(payload: {
+    name: string;
+    email: string;
+    password: string;
+    balance: number;
+    extract: {
+      accountNumber: string;
+      credit: number;
+      debit: number;
+    };
+  }) {
     return await this.userModel.create(payload);
   }
   async find(id?: any) {
-    console.log(id);
     const list = await this.userModel.findById(id, [
       "-password",
       "-email",
@@ -35,9 +44,18 @@ export default class UserRepository implements IRepository {
       };
     }
   ) {
-    return await this.userModel.findOneAndUpdate({ _id: id }, payload, {
+    await this.userModel.findOneAndUpdate({ _id: id }, payload, {
       new: true,
     });
+    return await this.userModel.findById(id, [
+      "-password",
+      "-email",
+      "-__v",
+      "-_id",
+      "-name",
+      "-createdAt",
+      "-updatedAt",
+    ]);
   }
   async findAll(id: any) {}
   async findById(id: any) {

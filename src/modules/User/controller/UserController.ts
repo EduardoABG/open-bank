@@ -6,6 +6,12 @@ type BodyUserRegister = {
   name: string;
   email: string;
   password: string;
+  balance: number;
+  extract: {
+    accountNumber: string;
+    credit: number;
+    debit: number;
+  };
 };
 type BodyUserUpdate = {
   balance: number;
