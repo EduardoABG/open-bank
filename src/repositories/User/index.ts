@@ -18,7 +18,12 @@ export default class UserRepository implements IRepository {
       debit: number;
     };
   }) {
-    return await this.userModel.create(payload);
+    const newUser = await this.userModel.create(payload);
+    const result = await this.userModel.findById(newUser.id, [
+      "-password",
+      "-__v",
+    ]);
+    return result;
   }
   async find(id?: any) {
     const list = await this.userModel.findById(id, [

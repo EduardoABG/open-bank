@@ -37,7 +37,6 @@ export default class UserController {
         if (savedUser) {
           return res.status(400).json("Este e-mail já está cadastrado.");
         }
-
         const newUser = await this.useCase.registerUser(
           req.body as BodyUserRegister
         );

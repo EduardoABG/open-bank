@@ -34,7 +34,7 @@ export default class UserUseCase {
       name: payload.name,
       email: payload.email,
       password: hashedPassword,
-      balance: 0,
+      balance: payload.balance,
       extract: payload.extract,
     };
     const newUser = await this.repository.create(userData);
