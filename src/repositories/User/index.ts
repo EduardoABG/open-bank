@@ -18,9 +18,9 @@ export default class UserRepository implements IRepository {
       debit: number;
     };
   }) {
-    const newUser = await this.userModel.create(payload);
-    if (newUser) {
-      const { password, ...responseUser } = newUser._doc;
+    const updatedUser = await this.userModel.create(payload);
+    if (updatedUser) {
+      const { password, __v, ...responseUser } = updatedUser._doc;
       return { user: responseUser };
     }
   }
@@ -48,18 +48,17 @@ export default class UserRepository implements IRepository {
       };
     }
   ) {
-    await this.userModel.findOneAndUpdate({ _id: id }, payload, {
-      new: true,
-    });
-    return await this.userModel.findById(id, [
-      "-password",
-      "-email",
-      "-__v",
-      "-_id",
-      "-name",
-      "-createdAt",
-      "-updatedAt",
-    ]);
+    const updatedUser = await this.userModel.findOneAndUpdate(
+      { _id: id },
+      payload,
+      {
+        new: true,
+      }
+    );
+    if (updatedUser) {
+      const { password, __v, _id, email, ...responseUser } = updatedUser._doc;
+      return { user: responseUser };
+    }
   }
   async findAll(id: any) {}
   async findById(id: any) {
