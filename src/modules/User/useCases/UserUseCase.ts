@@ -14,8 +14,6 @@ type PayloadUserCreate = {
 };
 type PayloadUserUpdate = {
   balance: number;
-
-  accountNumber: number;
   credit: number;
   debit: number;
 };
@@ -44,7 +42,6 @@ export default class UserUseCase {
   updateUser(_id: any, payload: PayloadUserUpdate) {
     const userData = {
       balance: payload.balance,
-      accountNumber: payload.accountNumber,
       credit: payload.credit,
       debit: payload.debit,
     };

@@ -42,7 +42,6 @@ export default class UserRepository implements IRepository {
     id: any,
     payload: {
       balance: number;
-      accountNumber: string;
       credit: number;
       debit: number;
     }

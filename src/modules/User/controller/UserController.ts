@@ -13,7 +13,6 @@ type BodyUserRegister = {
 };
 type BodyUserUpdate = {
   balance: number;
-  accountNumber: number;
   credit: number;
   debit: number;
 };
