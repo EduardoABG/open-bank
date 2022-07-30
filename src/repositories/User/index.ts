@@ -7,16 +7,15 @@ export default class UserRepository implements IRepository {
   constructor(userModel: Model<IUser>) {
     this.userModel = userModel;
   }
+
   async create(payload: {
     name: string;
     email: string;
     password: string;
     balance: number;
-    extract: {
-      accountNumber: string;
-      credit: number;
-      debit: number;
-    };
+    accountNumber: number;
+    credit: number;
+    debit: number;
   }) {
     const updatedUser = await this.userModel.create(payload);
     if (updatedUser) {
@@ -33,7 +32,9 @@ export default class UserRepository implements IRepository {
       "-name",
       "-createdAt",
       "-updatedAt",
-      "-extract",
+      "-accountNumber",
+      "-credit",
+      "-debit",
     ]);
     return list;
   }
@@ -41,11 +42,9 @@ export default class UserRepository implements IRepository {
     id: any,
     payload: {
       balance: number;
-      extract: {
-        accountNumber: string;
-        credit: number;
-        debit: number;
-      };
+      accountNumber: string;
+      credit: number;
+      debit: number;
     }
   ) {
     const updatedUser = await this.userModel.findOneAndUpdate(

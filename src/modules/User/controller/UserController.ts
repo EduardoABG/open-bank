@@ -7,19 +7,15 @@ type BodyUserRegister = {
   email: string;
   password: string;
   balance: number;
-  extract: {
-    accountNumber: string;
-    credit: number;
-    debit: number;
-  };
+  accountNumber: number;
+  credit: number;
+  debit: number;
 };
 type BodyUserUpdate = {
   balance: number;
-  extract: {
-    accountNumber: string;
-    credit: number;
-    debit: number;
-  };
+  accountNumber: number;
+  credit: number;
+  debit: number;
 };
 
 export default class UserController {

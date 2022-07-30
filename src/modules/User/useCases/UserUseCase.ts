@@ -1,25 +1,23 @@
 import IRepository from "../../../repositories/IRepository";
 import bcrypt from "bcryptjs";
 const ObjectId = require("mongoose").Types.ObjectId;
+import { Increment } from "mongoose-auto-increment-ts";
 
 type PayloadUserCreate = {
   name: string;
   email: string;
   password: string;
   balance: number;
-  extract: {
-    accountNumber: string;
-    credit: number;
-    debit: number;
-  };
+  accountNumber: number;
+  credit: number;
+  debit: number;
 };
 type PayloadUserUpdate = {
   balance: number;
-  extract: {
-    accountNumber: string;
-    credit: number;
-    debit: number;
-  };
+
+  accountNumber: number;
+  credit: number;
+  debit: number;
 };
 export default class UserUseCase {
   private repository: IRepository;
@@ -30,12 +28,15 @@ export default class UserUseCase {
 
   async registerUser(payload: PayloadUserCreate) {
     const hashedPassword = bcrypt.hashSync(payload.password, 10);
+    const accountNumber = await Increment("User");
     const userData = {
       name: payload.name,
       email: payload.email,
       password: hashedPassword,
       balance: payload.balance,
-      extract: payload.extract,
+      accountNumber: accountNumber,
+      credit: payload.credit,
+      debit: payload.debit,
     };
     const newUser = await this.repository.create(userData);
     return newUser;
@@ -43,7 +44,9 @@ export default class UserUseCase {
   updateUser(_id: any, payload: PayloadUserUpdate) {
     const userData = {
       balance: payload.balance,
-      extract: payload.extract,
+      accountNumber: payload.accountNumber,
+      credit: payload.credit,
+      debit: payload.debit,
     };
     const updateUser = this.repository.update(_id, userData);
     return updateUser;
