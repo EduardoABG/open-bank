@@ -8,6 +8,7 @@ Escolhi fazer inicialmente o back end, por ser minha melhor habildiade, e para f
 # Back End
 
 Para desenvolver o back end sera usado o TypeScript, NodeJS, Express, MongoDB, Mongoose, assim criando uma API Rest.
+Ao criar a conta, usa-se a estrutura de accountNumber com uma implementação de autoincrement, para assim ter uma contagem no numero de contas
 
 # Front End
 

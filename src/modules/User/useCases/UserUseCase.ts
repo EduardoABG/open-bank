@@ -2,6 +2,7 @@ import IRepository from "../../../repositories/IRepository";
 import bcrypt from "bcryptjs";
 const ObjectId = require("mongoose").Types.ObjectId;
 import { Increment } from "mongoose-auto-increment-ts";
+import { stringify } from "querystring";
 
 type PayloadUserCreate = {
   name: string;
@@ -26,7 +27,18 @@ export default class UserUseCase {
 
   async registerUser(payload: PayloadUserCreate) {
     const hashedPassword = bcrypt.hashSync(payload.password, 10);
-    const accountNumber = await Increment("User");
+    let accountNumber = await Increment("User");
+    let savedUserAccountNumber = await this.repository.count({
+      accountNumber,
+    });
+    while (savedUserAccountNumber) {
+      let manipulationVariable = Number(accountNumber);
+      accountNumber = manipulationVariable + 1;
+      accountNumber.toString();
+      savedUserAccountNumber = await this.repository.count({
+        accountNumber,
+      });
+    }
     const userData = {
       name: payload.name,
       email: payload.email,

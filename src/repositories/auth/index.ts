@@ -22,4 +22,5 @@ export default class AuthRepository implements IRepository {
   async findAll(payload?: any) {}
 
   async delete(id: any) {}
+  async count(payload: any) {}
 }

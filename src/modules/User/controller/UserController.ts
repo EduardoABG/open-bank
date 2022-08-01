@@ -26,10 +26,10 @@ export default class UserController {
     return async (req: Request, res: Response) => {
       try {
         const { email } = req.body;
-        const savedUser = await User.count({
+        const savedUserEmail = await User.count({
           email,
         });
-        if (savedUser) {
+        if (savedUserEmail) {
           return res.status(400).json("Este e-mail já está cadastrado.");
         }
         const newUser = await this.useCase.registerUser(

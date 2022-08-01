@@ -74,4 +74,7 @@ export default class UserRepository implements IRepository {
   async delete(id: any) {
     return await this.userModel.deleteOne({ _id: id });
   }
+  async count(payload: any) {
+    return await this.userModel.count(payload);
+  }
 }
