@@ -27,18 +27,7 @@ export default class UserUseCase {
 
   async registerUser(payload: PayloadUserCreate) {
     const hashedPassword = bcrypt.hashSync(payload.password, 10);
-    let accountNumber = await Increment("User");
-    // let savedUserAccountNumber = await this.repository.count({
-    //   accountNumber,
-    // });
-    // while (savedUserAccountNumber) {
-    //   let manipulationVariable = Number(accountNumber);
-    //   accountNumber = manipulationVariable + 1;
-    //   accountNumber.toString();
-    //   savedUserAccountNumber = await this.repository.count({
-    //     accountNumber,
-    //   });
-    // }
+    const accountNumber = await Increment("User");
     const userData = {
       name: payload.name,
       email: payload.email,
