@@ -28,14 +28,12 @@ export default class UserUseCase {
   async registerUser(payload: PayloadUserCreate) {
     const hashedPassword = bcrypt.hashSync(payload.password, 10);
     const accountNumber = await Increment("User");
-    const credit = payload.credit;
-    const debit = payload.debit;
-    const balance = credit - debit;
+
     const userData = {
       name: payload.name,
       email: payload.email,
       password: hashedPassword,
-      balance: balance,
+      balance: payload.balance,
       accountNumber: accountNumber,
       credit: payload.credit,
       debit: payload.debit,
@@ -44,8 +42,11 @@ export default class UserUseCase {
     return newUser;
   }
   updateUser(_id: any, payload: PayloadUserUpdate) {
+    const credit = payload.credit;
+    const debit = payload.debit;
+    const balance = credit - debit;
     const userData = {
-      balance: payload.balance,
+      balance: balance,
       credit: payload.credit,
       debit: payload.debit,
     };
