@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import UserUseCase from "../useCases/UserUseCase";
 import User from "../../../models/User";
+import ENV from "../../../infra/config/env";
 
 type BodyUserRegister = {
   name: string;
@@ -25,7 +26,7 @@ export default class UserController {
   register() {
     return async (req: Request, res: Response) => {
       try {
-        const { email } = req.body;
+        const { email, name } = req.body;
         const savedUserEmail = await User.count({
           email,
         });
@@ -35,6 +36,7 @@ export default class UserController {
         const newUser = await this.useCase.registerUser(
           req.body as BodyUserRegister
         );
+
         return res.status(201).json(newUser);
       } catch (error) {
         console.log(error);

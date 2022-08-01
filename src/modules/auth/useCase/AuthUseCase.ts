@@ -19,9 +19,4 @@ export default class AuthUseCase {
     const newLogin = this.repository.find({ email: loginData.email });
     return newLogin;
   }
-  generatePasswordToken(payload: PayloadLogin) {
-    const tokenData = { email: payload.email, senha: payload.password };
-    const newToken = this.repository.find(tokenData);
-    return newToken;
-  }
 }
