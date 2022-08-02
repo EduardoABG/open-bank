@@ -9,7 +9,7 @@ form.addEventListener("submit", (event) => {
     email: formObject.get("email"),
     password: formObject.get("password"),
   };
-  console.log(body);
+
   fetch(`${BASE_URL}/users`, {
     method: "POST",
     headers: {
@@ -20,7 +20,6 @@ form.addEventListener("submit", (event) => {
   })
     .then((response) => {
       console.log(response);
-      window.location.replace("user-area.html");
     })
-    .catch((error) => console.log(error));
+    .catch((error) => console.error(error));
 });
