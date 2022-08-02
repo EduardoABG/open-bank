@@ -24,7 +24,7 @@
     <link rel="icon" href="img/logo1.png" />
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <header class="p-3 text-bg-dark">
+    <header class="p-3 text-bg-dark fixed-top">
       <div class="container">
         <div
           class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -55,67 +55,64 @@
             >
               Login
             </button>
-            <!-- Modal -->
-            <div
-              class="modal fade"
-              id="staticBackdrop"
-              data-bs-backdrop="static"
-              data-bs-keyboard="false"
-              tabindex="-1"
-              aria-labelledby="staticBackdropLabel"
-              aria-hidden="true"
-            >
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="staticBackdropLabel">
-                      LOGIN
-                    </h5>
-                    <button
-                      type="button"
-                      class="btn-close"
-                      data-bs-dismiss="modal"
-                      aria-label="Close"
-                    ></button>
-                  </div>
-                  <div class="modal-body">
-                    <form>
-                      <h5 class="text-start text-secondary">Email</h5>
-                      <div class="form-floating mb-3 mt-3">
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="email"
-                          placeholder="Enter email"
-                          name="email"
-                        />
-                        <label for="email">Email</label>
-                      </div>
-                      <h5 class="text-start text-secondary">Senha</h5>
-                      <div class="form-floating mb-3">
-                        <input
-                          type="password"
-                          class="form-control"
-                          id="floatingPassword"
-                          placeholder="Password"
-                        />
-                        <label for="floatingPassword">Senha</label>
-                      </div>
-                      <button
-                        class="w-100 btn btn-lg btn-warning"
-                        type="submit"
-                      >
-                        Login
-                      </button>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </header>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="staticBackdropLabel">
+              LOGIN
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <h5 class="text-start text-secondary">Email</h5>
+              <div class="form-floating mb-3 mt-3">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  placeholder="Enter email"
+                  name="email"
+                />
+                <label for="email">Email</label>
+              </div>
+              <h5 class="text-start text-secondary">Senha</h5>
+              <div class="form-floating mb-3">
+                <input
+                  type="password"
+                  class="form-control"
+                  id="floatingPassword"
+                  placeholder="Password"
+                />
+                <label for="floatingPassword">Senha</label>
+              </div>
+              <button class="w-100 btn btn-lg btn-warning" type="submit">
+                Login
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
     <main>
       <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">

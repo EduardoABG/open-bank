@@ -7,7 +7,7 @@ const routes = Router();
 
 routes.get("/users_extract/:id", auth, userController.userExtract());
 routes.get("/users_balance/:id", auth, userController.userBalance());
-routes.post("/users", auth, userValidator.create, userController.register()); // Criação da 1ª rota, cadastrar usuário.
+routes.post("/users", userValidator.create, userController.register());
 routes.put("/users/:id", auth, userController.update());
 routes.delete("/users/:id", auth, userController.delete());
 
