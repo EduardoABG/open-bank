@@ -21,29 +21,3 @@ form.addEventListener("submit", (event) => {
   }
   handleSubmit();
 });
-
-
-export function getJwtToken() {
-  return sessionStorage.getItem("jwt")
-}
-
-export function setJwtToken(token) {
-  sessionStorage.setItem("jwt", token)
-}
-
-// Longer duration refresh token (30-60 min)
-export function getRefreshToken() {
-  return sessionStorage.getItem("refreshToken")
-}
-
-export function setRefreshToken(token) {
-  sessionStorage.setItem("refreshToken", token)
-}
-
-function handleLogin({ email, password }) {
-  const { jwtToken, refreshToken } = await login({ email, password })
-  setJwtToken(jwtToken)
-  setRefreshToken(refreshToken)
-
-  Router.push("/some-url")
-}

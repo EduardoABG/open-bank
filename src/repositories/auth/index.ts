@@ -10,13 +10,35 @@ export default class AuthRepository implements IRepository {
   }
   async find(payload?: { email: string; password: string }) {
     return await this.login.findOne({ email: payload?.email }, [
+      "-__v",
+      "-_id",
+      "-createdAt",
+      "-updatedAt",
+      "-accountNumber",
+      "-credit",
+      "-debit",
       "-name",
-      "-extract",
       "-balance",
       "+password",
     ]);
   }
-  async findById(payload?: any, id?: any) {}
+  async findById(payload?: { token: string }, id?: any) {
+    return await this.login.findOne({ token: payload?.token }, [
+      "-password",
+      "-email",
+      "-__v",
+      "-_id",
+      "-name",
+      "-createdAt",
+      "-updatedAt",
+      "-accountNumber",
+      "-credit",
+      "-debit",
+      "-name",
+      "-balance",
+      "-password",
+    ]);
+  }
   async create(payload: any) {}
   async update(payload: any, id: any) {}
   async findAll(payload?: any) {}

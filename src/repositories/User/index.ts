@@ -19,7 +19,7 @@ export default class UserRepository implements IRepository {
   }) {
     const updatedUser = await this.userModel.create(payload);
     if (updatedUser) {
-      const { password, __v, ...responseUser } = updatedUser._doc;
+      const { password, __v, token, ...responseUser } = updatedUser._doc;
       return { user: responseUser };
     }
   }
@@ -35,6 +35,7 @@ export default class UserRepository implements IRepository {
       "-accountNumber",
       "-credit",
       "-debit",
+      "-token",
     ]);
     return list;
   }
@@ -54,7 +55,8 @@ export default class UserRepository implements IRepository {
       }
     );
     if (updatedUser) {
-      const { password, __v, _id, email, ...responseUser } = updatedUser._doc;
+      const { password, __v, _id, email, token, ...responseUser } =
+        updatedUser._doc;
       return { user: responseUser };
     }
   }
@@ -69,6 +71,7 @@ export default class UserRepository implements IRepository {
       "-createdAt",
       "-updatedAt",
       "-balance",
+      "-token",
     ]);
   }
   async delete(id: any) {

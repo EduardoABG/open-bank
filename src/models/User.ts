@@ -8,6 +8,7 @@ export interface IUser {
   accountNumber: string;
   credit: number;
   debit: number;
+  token: string;
 }
 
 const userSchema = new Schema<IUser>(
@@ -27,6 +28,7 @@ const userSchema = new Schema<IUser>(
     accountNumber: { type: Schema.Types.String },
     credit: { type: Schema.Types.Number },
     debit: { type: Schema.Types.Number },
+    token: { type: Schema.Types.String },
   },
   { timestamps: true }
 );
