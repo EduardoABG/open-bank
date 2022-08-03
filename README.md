@@ -20,7 +20,7 @@ O Front end está sendo feito basicamente de bootstrap no entanto não ficou com
 
 Para a **Implantação** dessa aplicação, é necessário seguir o seguinte passo-a-passo:
 
-#### 1 - clonar o repositório
+#### 1 - Clonar o repositório
 
 ```
 git clone https://github.com/EduardoABG/open-bank.git
