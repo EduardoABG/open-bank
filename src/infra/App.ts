@@ -4,7 +4,6 @@ import path from "path";
 import BaseRoutes from "./BaseRoutes";
 import cors from "cors";
 import handleError from "./middlewares/handleError";
-import cookieParser from "cookie-parser";
 
 type SetupOptions = {
   isTest?: boolean;
@@ -24,7 +23,6 @@ export default class App {
     await mongoDBConection.createConection();
     const selectedPort = options.port ? options.port : this.defaultPort;
     this.instance.use(Express.json());
-    this.instance.use(cookieParser());
     this.instance.use(BaseRoutes);
     this.instance.use(handleError);
 
